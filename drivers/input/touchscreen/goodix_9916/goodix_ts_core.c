@@ -2990,6 +2990,28 @@ static int goodix_set_cur_value(int gtp_mode, int gtp_value)
 		return 0;
 	}
 
+	if (gtp_mode == THP_FOD_DOWNUP_CTL && goodix_core_data &&
+	    gtp_value >= 0) {
+		if (gtp_value != 0) {
+			ts_info("ts fod down");
+			goodix_core_data->fod_finger = true;
+			input_event(goodix_core_data->input_dev, EV_KEY, 0x152,
+				    1);
+		} else {
+			ts_info("ts fod up");
+			goodix_core_data->fod_finger = false;
+			input_event(goodix_core_data->input_dev, EV_KEY, 0x152,
+				    0);
+			input_event(goodix_core_data->input_dev, EV_ABS, 0x32,
+				    0);
+			input_event(goodix_core_data->input_dev, EV_ABS, 0x33,
+				    0);
+		}
+		update_fod_press_status(gtp_value != 0);
+		input_event(goodix_core_data->input_dev, EV_SYN, SYN_REPORT, 0);
+		return 0;
+	}
+
 	if (gtp_mode >= Touch_Mode_NUM) {
 		ts_err("gtp mode is error:%d", gtp_mode);
 		return -EINVAL;
