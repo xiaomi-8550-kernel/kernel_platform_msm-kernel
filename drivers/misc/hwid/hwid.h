@@ -11,6 +11,8 @@
 #include <linux/types.h>
 
 #define HARDWARE_PROJECT_UNKNOWN    0
+#define HARDWARE_PROJECT_M2         1
+#define HARDWARE_PROJECT_M3         2
 
 typedef enum {
 	CountryCN = 0x00,
