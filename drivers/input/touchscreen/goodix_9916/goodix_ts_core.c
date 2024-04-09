@@ -2992,7 +2992,9 @@ static int goodix_set_cur_value(int gtp_mode, int gtp_value)
 
 	if (gtp_mode == THP_FOD_DOWNUP_CTL && goodix_core_data &&
 	    gtp_value >= 0) {
-		if (goodix_core_data->fod_status == 0 && !goodix_core_data->fod_finger)
+		if (goodix_core_data->fod_status != 1 &&
+			goodix_core_data->fod_status != 2 &&
+			!goodix_core_data->fod_finger)
 			return 0;
 		if (gtp_value != 0) {
 			ts_info("ts fod down");
