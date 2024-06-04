@@ -3074,7 +3074,7 @@ static int goodix_start_later_init(struct goodix_ts_core *cd)
 		ret = goodix_normalize_coeffi_update(cd);
 		if (ret != 0) {
 			ts_err("failed update normalize coeffi!");
-			goto err_out;
+			//goto err_out;
 		}
 	} else {
 		ts_info("no config data, skip update normalize coeffi");
