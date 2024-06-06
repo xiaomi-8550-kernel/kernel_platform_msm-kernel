@@ -315,11 +315,13 @@ static int gsx_gesture_ist(struct goodix_ts_core *cd,
 			gs_event.gesture_type);
 		if (cd->double_wakeup && gs_event.gesture_type == 0xcc) {
 			ts_info("GTP gesture report double tap");
+			notify_gesture_double_tap();
 			key_value = KEY_WAKEUP;
 		}
 		if ((cd->fod_icon_status || cd->aod_status) &&
 		    cd->nonui_status == 0 && gs_event.gesture_type == 0x4c) {
 			ts_info("GTP gesture report single tap");
+			notify_gesture_single_tap();
 			key_value = KEY_GOTO;
 		}
 		input_report_key(cd->input_dev, key_value, 1);
