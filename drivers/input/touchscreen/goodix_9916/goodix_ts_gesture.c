@@ -324,10 +324,10 @@ static int gsx_gesture_ist(struct goodix_ts_core *cd,
 			notify_gesture_single_tap();
 			key_value = KEY_GOTO;
 		}
-		input_report_key(cd->input_dev, key_value, 1);
-		input_sync(cd->input_dev);
-		input_report_key(cd->input_dev, key_value, 0);
-		input_sync(cd->input_dev);
+		//input_report_key(cd->input_dev, key_value, 1);
+		//input_sync(cd->input_dev);
+		//input_report_key(cd->input_dev, key_value, 0);
+		//input_sync(cd->input_dev);
 		goto re_send_ges_cmd;
 	} else {
 		ts_info("unsupported gesture:%x", gs_event.gesture_type);
