@@ -2952,6 +2952,8 @@ static int goodix_set_cur_value(int gtp_mode, int gtp_value)
 	}
 	if (gtp_mode == Touch_Doubletap_Mode && goodix_core_data &&
 	    gtp_value >= 0) {
+		xiaomi_touch_interfaces.touch_mode[gtp_mode][SET_CUR_VALUE] = gtp_value;
+		xiaomi_touch_interfaces.touch_mode[gtp_mode][GET_CUR_VALUE] = gtp_value;
 		goodix_core_data->double_wakeup = gtp_value;
 		queue_work(goodix_core_data->gesture_wq,
 			   &goodix_core_data->gesture_work);
@@ -2959,6 +2961,8 @@ static int goodix_set_cur_value(int gtp_mode, int gtp_value)
 	}
 	if (gtp_mode == Touch_Aod_Enable && goodix_core_data &&
 	    gtp_value >= 0) {
+		xiaomi_touch_interfaces.touch_mode[gtp_mode][SET_CUR_VALUE] = gtp_value;
+		xiaomi_touch_interfaces.touch_mode[gtp_mode][GET_CUR_VALUE] = gtp_value;
 		goodix_core_data->aod_status = gtp_value;
 		queue_work(goodix_core_data->gesture_wq,
 			   &goodix_core_data->gesture_work);
