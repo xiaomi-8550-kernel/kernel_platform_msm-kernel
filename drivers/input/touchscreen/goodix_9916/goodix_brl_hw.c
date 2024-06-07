@@ -1282,6 +1282,7 @@ static int brl_event_handler(struct goodix_ts_core *cd,
 		ts_err("touch head checksum err");
 		ts_err("touch_head %*ph", IRQ_EVENT_HEAD_LEN, pre_buf);
 		ts_event->retry = 1;
+		cd->pending_init_coor_mode = true;
 		return -EINVAL;
 	}
 	large_touch_status = pre_buf[2];
